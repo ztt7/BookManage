@@ -22,23 +22,23 @@ public interface BookMapper {
     int addBorrow(@Param("sid") int sid, @Param("bid") int bid);
 
     @Results({
-            @Result(column = "id",property = "id", id = true),
-            @Result(column = "sid",property = "student", one = @One(select = "getStudentBySid")),
-            @Result(column = "bid",property = "book", one = @One(select = "getBookByBid")),
+            @Result(column = "id", property = "id", id = true),
+            @Result(column = "sid", property = "student", one = @One(select = "getStudentBySid")),
+            @Result(column = "bid", property = "book", one = @One(select = "getBookByBid")),
     })
     @Select("select * from borrow")
     List<Borrow> getBorrowList();
 
-    @Results({
-            @Result(column = "sid", property = "sid", id = true),
-            @Result(column = "name", property = "name"),
-            @Result(column = "sex", property = "sex"),
-            @Result(column = "grade", property = "grade")
-    })
+//    @Results({
+//            @Result(column = "sid", property = "sid", id = true),
+//            @Result(column = "name", property = "name"),
+//            @Result(column = "sex", property = "sex"),
+//            @Result(column = "grade", property = "grade")
+//    })
     @Select("select * from student where sid = #{sid}")
     Student getStudentBySid(int sid);
 
-    @Select("select * from book where sid = #{bid}")
+    @Select("select * from book where bid = #{bid}")
     Book getBookByBid(int bid);
 
 }

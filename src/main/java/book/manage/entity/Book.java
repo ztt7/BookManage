@@ -9,6 +9,9 @@ public class Book {
     String desc;
     double price;
 
+    public Book() {
+    }
+
     public Book(String title, String desc, double price) {
         this.title = title;
         this.desc = desc;
