@@ -29,6 +29,12 @@ public interface BookMapper {
     @Select("select * from borrow")
     List<Borrow> getBorrowList();
 
+    @Select("select * from student")
+    List<Student> getStudentList();
+
+    @Select("select * from book")
+    List<Book> getBookList();
+
 //    @Results({
 //            @Result(column = "sid", property = "sid", id = true),
 //            @Result(column = "name", property = "name"),

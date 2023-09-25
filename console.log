@@ -4,3 +4,5 @@
 信息: 新添加了一条书籍信息：Book(bid=0, title=书籍2, desc=我是测试书籍2, price=33.0)
 九月 12, 2023 10:12:44 上午 book.manage.Main lambda$addStudent$0
 信息: 新添加了一条学生信息：Student(sid=0, name=耳挂, sex=男, grade=3)
+九月 22, 2023 10:21:03 上午 book.manage.Main lambda$addStudent$3
+信息: 新添加了一条学生信息：Student(sid=0, name=4, sex=女, grade=23)

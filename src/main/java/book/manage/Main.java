@@ -12,6 +12,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
 import java.security.PrivateKey;
+import java.sql.SQLOutput;
 import java.util.Scanner;
 import java.util.logging.LogManager;
 
@@ -37,6 +38,9 @@ public class Main {
                 System.out.println("1. 录入学生信息");
                 System.out.println("2. 录入书籍信息");
                 System.out.println("3. 添加借阅信息");
+                System.out.println("4. 展示借阅信息");
+                System.out.println("5. 展示学生信息");
+                System.out.println("6. 展示书籍信息");
                 System.out.print("输入您想要执行的操作（输入其他任意数字退出） ： ");
                 int input;
                 try {
@@ -59,6 +63,15 @@ public class Main {
                     case 3:
                         addBorrow(scanner);
                         break;
+                    case 4:
+                        showBorrow();
+                        break;
+                    case 5:
+                        showStudent();
+                        break;
+                    case 6:
+                        showBook();
+                        break;
                     default:
                         return;
                 }
@@ -68,6 +81,28 @@ public class Main {
         }
     }
 
+    private static void showStudent() {
+        SqlUtil.doSqlWork(mapper -> {
+            mapper.getStudentList().forEach(student -> {
+                System.out.println(student.getSid() + ", " + student.getName() + ", " + student.getSex() + ", " + student.getGrade() + "级");
+            });
+        });
+    }
+
+    private static void showBook() {
+        SqlUtil.doSqlWork(mapper -> {
+            mapper.getBookList().forEach(book -> {
+                System.out.println(book.getBid() + ", " + book.getTitle() + "," + "[" + book.getPrice() + "]" + "(" + book.getTitle() + ")");
+            });
+        });
+    }
+    private static void showBorrow() {
+        SqlUtil.doSqlWork(mapper -> {
+            mapper.getBorrowList().forEach(borrow -> {
+                System.out.println(borrow.getStudent().getName()+ "- > " + borrow.getBook().getTitle());
+            });
+        });
+    }
     private static void addBorrow(Scanner scanner) {
         System.out.print("请输入书籍编号：");
         String a = scanner.nextLine();
